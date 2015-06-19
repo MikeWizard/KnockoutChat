@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>KnockOut.CHAT</title>
+    <script type='text/javascript' src='jquery-1.11.3.min.js'></script>
+    <script type='text/javascript' src='knockout-3.3.0.js'></script>
+    <script type='text/javascript' src='chat.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <form data-bind="submit: addUser" class="navbar navbar-default">
+
+        Nombre&nbsp;<input data-bind="value:newUserName" />
+        <button type="submit" class="btn btn-lg btn-success">Agregar Nuevo Usuario</button>
+    </form>
+
+    <div data-bind="foreach:users" class="">
+        <div class="User thumbnail alert-info">
+            <h4>
+                <span data-bind="text: id"></span>-
+                <span data-bind="text: name"></span>
+                <button class="btn btn-default" data-bind="click: $parent.sendFullHistory">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true">
+                    </span>
+                </button><span style="font-size:11px">Cargar Historial</span>
+            </h4>
+
+
+            <table border="0" width="90%" data-bind="foreach:history" class="history">
+                <tr><td colspan="99" class="rowDelimiter">&nbsp;</td></tr>
+                <tr>
+                    <td align="left" width="30%"><span data-bind="text: userFrom"></span></td>
+                    <td align="center">
+                        <div data-bind="text: text"></div>
+                        <!--<div data-bind="text: dateTime"></div>-->
+                    </td>
+                </tr>
+            </table>
+            <div class="rowDelimiter" style="width:90%">&nbsp;</div><br />
+            <div class="newMessage">
+                <div>
+                    <input data-bind="value: newText" />
+                    <button data-bind="click: $parent.messageAll" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    var vm;
+
+    $(document).ready(function () {
+        vm = new chatViewModel();
+        ko.applyBindings(vm);
+    });
+</script>

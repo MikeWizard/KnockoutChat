@@ -1,0 +1,15 @@
+    .User {
+        min-height:350px;
+        min-width: 30%;
+        float:left;
+        margin:10px;
+        border-radius:10px;
+        padding-left:20px;
+    }
+    .rowDelimiter {
+        line-height:1px;
+        background-color:#5dbbff;
+    }
+    .history {
+        background-color:#e8f4fc;
+    }
