@@ -4,16 +4,16 @@ function chatViewModel() {
     var dateTime = new Date().toString();
     self.users = ko.observableArray();
     self.chat = ko.observableArray();
-    self.newUserName = ko.observable("");
+    self.newUserName = ko.observable();
     self.addUser = function () {
-        if (self.newUserName() != "") {
-            self.users.push(new User(self.newUserName(), self.users().length + 1));
+        if (self.newUserName()) {
+            self.users.push(new User(self.newUserName());
             self.newUserName("");
         }
     }
 
     self.messageAll = function (userFrom) {
-        if(userFrom.newText() !=""){
+        if(userFrom.newText()){
             self.users().forEach(function (userTo) {
                 userTo.receiveMessage(userFrom.name, userFrom.newText(), dateTime);
             });
@@ -36,7 +36,7 @@ function User(name, id) {
     self.name = name;
     self.id = id;
     self.history = ko.observableArray();
-    self.newText = ko.observable("");
+    self.newText = ko.observable();
     self.receiveMessage = function (userFrom, text, dateTime) {
         self.history.push(new Message(userFrom, text, dateTime));
     }
@@ -47,4 +47,6 @@ function Message(userFrom, text, dateTime) {
     self.text = text;
     self.dateTime = dateTime;
 }
-function isMe(name) { return (name == 'Mike') }
+function isMe(name) { 
+    return name === 'Mike';
+}
